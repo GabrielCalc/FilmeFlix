@@ -99,7 +99,7 @@ public class BDSimulado {
 	public void addAvaliacaoFilme(String tituloFilme, String CPFUsuario, int notaFilme){
 		//Declarar um objeto avaliacao
 		Avaliacao avaliacao = new Avaliacao(getUsuarioPorCPF(CPFUsuario), notaFilme);
-	
+		
 	//percorrer a lista de filmes
 	for (int i = 0; i < this.filmes.size(); i++) {
 		//verificar se é o filme com aquele nome
@@ -110,4 +110,19 @@ public class BDSimulado {
 		
 	} 
 	}
+	
+	//metodo que retorna a lista de filmes avaliados
+	public ArrayList<Filme> getFilmesPorNota(int notaFilme){
+		ArrayList<Filme> resultado = new ArrayList<>();
+		for (int i = 0; i < this.filmes.size(); i++) {
+			for (int j = 0; j < this.filmes.get(i).getAvaliacoes().size(); j++) {
+				if (this.filmes.get(i).getAvaliacoes().get(j).getNota() >= notaFilme) {
+					resultado.add(this.filmes.get(i));	
+				}
+			}	
+		}
+		
+		return resultado;
+	}
+
 }
