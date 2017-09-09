@@ -24,7 +24,12 @@ public class Principal {
 			
 		}
 
-	
+	Usuario usuario = bds.getUsuarioPorCPF("234");
+	System.out.println(usuario);
 	}
 
+
+	
+	
+	
 }

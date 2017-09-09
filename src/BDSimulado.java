@@ -30,12 +30,12 @@ public class BDSimulado {
 		this.usuarios = new ArrayList<Usuario>();
 		
 		//Instanciar objetos da classe Usuarios
-		Usuario u1 = new Usuario ("Joao", "Masculino", 33);
-		Usuario u2 = new Usuario ("Maria", "Feminino", 25);
-		Usuario u3 = new Usuario ("Albert", "Masculino", 24);
-		Usuario u4 = new Usuario ("Joana", "Feminino", 55);
-		Usuario u5 = new Usuario ("Malboro", "Masculino", 28);
-		Usuario u6 = new Usuario ("Carla", "Feminino", 31);
+		Usuario u1 = new Usuario ("Joao", "123", "Masculino", 33);
+		Usuario u2 = new Usuario ("Maria", "234", "Feminino", 25);
+		Usuario u3 = new Usuario ("Albert", "345","Masculino", 24);
+		Usuario u4 = new Usuario ("Joana", "456", "Feminino", 55);
+		Usuario u5 = new Usuario ("Malboro", "567", "Masculino", 28);
+		Usuario u6 = new Usuario ("Carla", "789", "Feminino", 31);
 		
 		//Colocar os usuarios na lista
 		this.usuarios.add(u1);
@@ -82,5 +82,32 @@ public class BDSimulado {
 		}
 		return resultado;
 	}
+	//metodo que retorna o usuario por CPF
+	public Usuario getUsuarioPorCPF(String CPF){
+		Usuario resultado = null;
+		
+		for (int i = 0; i < this.usuarios.size(); i++) {
+			if (this.usuarios.get(i).getCPF().equals(CPF)) {
+				resultado = this.usuarios.get(i);
+				
+			}
+			
+		}
+		return resultado;
+	}
+	//metodo que da avaliação a um filme
+	public void addAvaliacaoFilme(String tituloFilme, String CPFUsuario, int notaFilme){
+		//Declarar um objeto avaliacao
+		Avaliacao avaliacao = new Avaliacao(getUsuarioPorCPF(CPFUsuario), notaFilme);
 	
+	//percorrer a lista de filmes
+	for (int i = 0; i < this.filmes.size(); i++) {
+		//verificar se é o filme com aquele nome
+		if (this.filmes.get(i).getTitulo().equals(tituloFilme)) {
+			this.filmes.get(i).getAvaliacoes().add(avaliacao);
+			
+		}
+		
+	} 
+	}
 }
